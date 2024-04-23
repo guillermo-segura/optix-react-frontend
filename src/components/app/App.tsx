@@ -14,7 +14,7 @@ export const App = () =>  {
       <MoviesProvider>
         <Container>
           <h1>Welcome to MovieDB!</h1>
-          <br />
+          <hr />
           <Movies />
           <ReviewForm />
         </Container>
