@@ -11,7 +11,7 @@ export const MoviesHeader = () =>  {
 
   const getHeader = (count: number): string => {
     if (count < 1) {
-      return 'Sorry, there are no movies this time';
+      return 'There are 0 movies in our DB';
     }
 
     if (count === 1) {
