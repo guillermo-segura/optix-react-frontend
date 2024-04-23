@@ -1,5 +1,7 @@
 import { Box, Chip, Rating } from '@mui/material';
 
+import { round, avg } from '../../../utils/helpers/math';
+
 interface Labels {
   [index: string]: string;
 }
@@ -22,15 +24,6 @@ const labels: Labels = {
   4.5: 'Fantastic',
   5: 'Masterpiece',
 };
-
-const round = (value: number, precision: number): number => {
-  var multiplier = Math.pow(10, precision || 0);
-  return Math.round(value * multiplier) / multiplier;
-}
-
-const avg = (values: number[]): number => {
-  return (values.reduce((total, value) => (total + value), 0)) / values.length;
-}
 
 export const Review = ({
   values,
