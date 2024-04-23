@@ -14,7 +14,7 @@ const labels: { [index: string]: string } = {
   5: 'Excellent+',
 };
 
-export const Rating = ({ values, readOnly, onChange }) => {
+export const Review = ({ values, readOnly, onChange }) => {
   const value = Math.floor(values.reduce((acc, item) => (acc + item), 0) / values.length);
   return (
     <Box

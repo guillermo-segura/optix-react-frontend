@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 
-import { Rating } from '../generic/rating/Rating';
+import { Review } from '../generic/review/Review';
 import { Context as MoviesContext } from '../../context/MoviesContext';
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 import { Table } from '../generic/table/Table';
@@ -25,7 +25,7 @@ const columns: GridColDef<(typeof mockMovieData)[number]>[] = [
     headerName: 'Reviews',
     width: 150,
     editable: false,
-    renderCell: ({ value }) => <Rating values={value} readOnly />,
+    renderCell: ({ value }) => <Review values={value} readOnly />,
   },
   {
     field: 'releaseYear',

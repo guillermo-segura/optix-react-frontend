@@ -1,7 +1,7 @@
-import { Avatar, Card, CardContent, CardHeader, TextField, CardActions, Button } from "@mui/material";
+import { Avatar, Card, CardContent, CardHeader, TextField, CardActions, Button } from '@mui/material';
 
-import { Rating } from "../generic/rating/Rating";
-import { useReviewForm } from "../../hooks/useReviewForm/useReviewForm";
+import { Review } from '../generic/review/Review';
+import { useReviewForm } from '../../hooks/useReviewForm/useReviewForm';
 
 export const ReviewForm = () => {
   const {
@@ -30,7 +30,7 @@ export const ReviewForm = () => {
         />
         <CardContent>
             <p>Please provide some feedback about the movie</p>
-            <Rating values={[review]} onChange={(e, newValue) => setReview(newValue * 2)}/>
+            <Review values={[review]} onChange={(e, newValue) => setReview(newValue * 2)}/>
             <br />
             <TextField
               sx={{ width: '100%' }}
