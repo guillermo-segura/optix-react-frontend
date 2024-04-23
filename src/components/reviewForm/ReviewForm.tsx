@@ -3,7 +3,6 @@ import { Avatar, Card, CardContent, CardHeader, TextField, CardActions, Button }
 import { Rating } from "../generic/rating/Rating";
 import { useReviewForm } from "../../hooks/useReviewForm/useReviewForm";
 
-
 export const ReviewForm = () => {
   const {
     onCancel,

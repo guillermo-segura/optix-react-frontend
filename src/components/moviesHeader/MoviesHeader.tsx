@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 
-import { Context as MoviesContext } from "../../context/MoviesContext";
+import { Context as MoviesContext } from '../../context/MoviesContext';
 export interface MoviesHeaderProps {
   moviesCount?: number;
 }
-
 
 export const MoviesHeader = () =>  {
   const { state: { movies } } = useContext(MoviesContext);
