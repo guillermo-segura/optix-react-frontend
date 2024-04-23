@@ -1,14 +1,13 @@
-import { Autorenew } from "@mui/icons-material";
+import { useContext } from "react";
+import { Button } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Button } from "@mui/material";
-import { useContext } from "react";
+import { Autorenew } from "@mui/icons-material";
+
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 import { Context as MoviesContext } from '../../context/MoviesContext';
 
-
-
-export const RefreshButton = () => {
+export const RefreshMoviesButton = () => {
   const { fetchMovies } = useContext(MoviesContext);
   const { fetchMovieCompanies } = useContext(MovieCompaniesContext);
   
@@ -20,26 +19,14 @@ export const RefreshButton = () => {
     fetchMovies();
   };
 
-  if (isSmallScreen) {
-    return (
-      <Button
-        variant="text"
-        size="small"
-        onClick={onClick}
-      >
-          <Autorenew />
-      </Button>
-    );
-  }
-
   return (
     <Button
       variant="text"
       size="small"
-      startIcon={<Autorenew />}
+      startIcon={!isSmallScreen && <Autorenew />}
       onClick={onClick}
     >
-        Refresh
+        {isSmallScreen ? <Autorenew /> : 'Refresh'}
     </Button>
   );
 }
