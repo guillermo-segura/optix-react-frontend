@@ -2,21 +2,28 @@ import { useState, useContext } from "react";
 
 import { Context as MovieContext } from '../../context/MoviesContext';
 
+const DEFAULT_MESSAGE = '';
+const DEFAULT_REVIEW = 0;
+
 export const useReviewForm = () => {
   const { selectMovie, state: { selectedMovie } } = useContext(MovieContext);
-  const [message, setMessage] = useState('');
-  const [review, setReview] = useState(0);
+  const [message, setMessage] = useState(DEFAULT_MESSAGE);
+  const [review, setReview] = useState(DEFAULT_REVIEW);
 
-  const onCancel = () => {
+  const resetForm = () => {
     selectMovie(undefined);
-    setMessage('');
-    setReview(0);
+    setMessage(DEFAULT_MESSAGE);
+    setReview(DEFAULT_REVIEW);
   }
 
-  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onCancel = () => {
+    resetForm();
+  }
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Submit clicked', message, review);
-    onCancel();
+    resetForm();
   };
 
   return {

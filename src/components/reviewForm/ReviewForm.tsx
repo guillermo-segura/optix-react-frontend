@@ -5,7 +5,15 @@ import { useReviewForm } from "../../hooks/useReviewForm/useReviewForm";
 
 
 export const ReviewForm = () => {
-  const { onCancel, onSubmit, values, setValues, selectedMovie } = useReviewForm();
+  const {
+    onCancel,
+    onSubmit,
+    review,
+    message,
+    setReview,
+    setMessage,
+    selectedMovie,
+  } = useReviewForm();
 
   return selectedMovie && (
     <form onSubmit={onSubmit}>
@@ -23,14 +31,15 @@ export const ReviewForm = () => {
         />
         <CardContent>
             <p>Please provide some feedback about the movie</p>
-            <Rating values={[values.rating]} onChange={(e, newValue) => setValues('rating', newValue * 2)}/>
+            <Rating values={[review]} onChange={(e, newValue) => setReview(newValue * 2)}/>
             <br />
             <TextField
+              sx={{ width: '100%' }}
               id="outlined-textarea"
               label="Multiline Placeholder"
               placeholder="Placeholder"
-              value={values.description}
-              onChange={(e) => setValues('description', e.target.value)}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               minRows={4}
               multiline
             />
