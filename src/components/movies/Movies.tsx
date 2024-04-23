@@ -1,21 +1,14 @@
-import { useRef } from 'react';
+import { useEffect, useContext } from 'react';
 
 import { Box } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Rating } from '../generic/rating/Rating';
+import { RefreshButton } from '../refreshButton/RefreshButton';
+import { MoviesHeader } from '../moviesHeader/MoviesHeader';
+import { Context as MoviesContext } from '../../context/MoviesContext';
+import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 
 const PAGE_SIZE = 10;
-
-// TODO: use https://giddy-beret-cod.cyclic.app/movieCompanies
-const mockMovieCompanyData: any = [
-  {id: "1", name: "Test Productions"},
-];
-
-// TODO: use https://giddy-beret-cod.cyclic.app/movies
-const mockMovieData: any = [
-  {id: "1", reviews: [6,8,3,9,8,7,8], title: "A Testing Film", filmCompanyId: "1", cost : 534, releaseYear: 2005},
-  {id: "2", reviews: [5,7,3,4,1,6,3], title: "Mock Test Film", filmCompanyId: "1", cost : 6234, releaseYear: 2006},
-];
 
 export interface MoviesProps {
   selectedMovie?: any;
@@ -23,26 +16,25 @@ export interface MoviesProps {
 }
 
 const columns: GridColDef<(typeof mockMovieData)[number]>[] = [
-  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'ID', width: 50 },
   {
     field: 'title',
     headerName: 'Title',
-    width: 200,
+    width: 180,
     editable: false,
   },
   {
-    field: 'filmCompanyId',
+    field: 'companyName',
     headerName: 'Company',
-    width: 200,
+    width: 180,
     editable: false,
-    valueGetter: (value) => mockMovieCompanyData.find((f: any) => f.id === value)?.name
   },
   {
     field: 'reviews',
     headerName: 'Reviews',
     width: 150,
     editable: false,
-    renderCell: ({ value }) => <Rating values={value} />,
+    renderCell: ({ value }) => <Rating values={value} readOnly />,
   },
   {
     field: 'releaseYear',
@@ -52,15 +44,33 @@ const columns: GridColDef<(typeof mockMovieData)[number]>[] = [
   },
 ];
 
-export const Movies = ({ setSelectedMovie , selectedMovie }: MoviesProps) =>  {
-  const movieLength = useRef(mockMovieData.length);
+export const Movies = () =>  {
+  const { fetchMovies, state: { movies }, selectMovie } = useContext(MoviesContext);
+  const { fetchMovieCompanies, state: { movieCompanies } } = useContext(MovieCompaniesContext);
+
+  useEffect(() => {
+    fetchMovieCompanies();
+    fetchMovies();
+  }, []);
+
+  const rows = movies.map((movie) => {
+    const company = movieCompanies.find((company) => company.id === movie.filmCompanyId);
+    return {
+      ...movie,
+      companyName: company ? company.name : '-',
+    };
+  });
+
   return (
     <div>
-      <h2>We've found {movieLength.current} movies in total</h2>
-      <p>Please select a movie to add a review</p>
+      <MoviesHeader moviesCount={movies.length} />
+      <Box display="flex" flexDirection="row" alignItems="center" justifyContent="space-between">
+        <p>Please select a movie to add a review</p>
+        <RefreshButton />
+      </Box>
       <Box sx={{ width: '100%' }}>
         <DataGrid
-          rows={mockMovieData}
+          rows={rows}
           columns={columns}
           initialState={{
             pagination: {
@@ -69,10 +79,10 @@ export const Movies = ({ setSelectedMovie , selectedMovie }: MoviesProps) =>  {
               },
             },
           }}
+          pageSizeOptions={[PAGE_SIZE]}
           onRowSelectionModelChange={(selectedMovieId) => {
-            const movie = mockMovieData.find((movie) => movie.id === selectedMovieId[0]);
-            console.log(selectedMovieId, mockMovieData, movie);
-            setSelectedMovie(movie);
+            const movie = rows.find((movie) => movie.id === selectedMovieId[0]);
+            selectMovie(movie);
           }}
           checkboxSelection
           disableMultipleRowSelection
