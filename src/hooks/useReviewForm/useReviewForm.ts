@@ -4,37 +4,28 @@ import { Context as MovieContext } from '../../context/MoviesContext';
 
 export const useReviewForm = () => {
   const { selectMovie, state: { selectedMovie } } = useContext(MovieContext);
-  const [description, setDescription] = useState('');
-  const [rating, setRating] = useState(0);
+  const [message, setMessage] = useState('');
+  const [review, setReview] = useState(0);
 
   const onCancel = () => {
     selectMovie(undefined);
-    setDescription('');
-    setRating(0);
+    setMessage('');
+    setReview(0);
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log('Submit clicked', description, rating);
-    onCancel(undefined);
-  };
-
-  const values = { description, rating };
-
-  const setValues = (key, value) => {
-    const setters = {
-      description: setDescription,
-      rating: setRating,
-    };
-
-    setters[key](value);
+    console.log('Submit clicked', message, review);
+    onCancel();
   };
 
   return {
     onCancel,
     onSubmit,
-    values,
-    setValues,
+    review,
+    message,
+    setReview,
+    setMessage,
     selectedMovie,
   };
 };
