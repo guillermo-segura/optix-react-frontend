@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Container } from '@mui/material';
 // import { easeIn, easeOut } from "polished";
 // import { useBoolean } from "react-use";
@@ -6,17 +6,20 @@ import { Container } from '@mui/material';
 
 import { Movies } from '../movies/Movies';
 import { ReviewForm } from '../reviewForm/ReviewForm';
-import { RefreshButton } from '../refreshButton/RefreshButton';
+import { Provider as MoviesProvider } from '../../context/MoviesContext';
+import { Provider as MovieCompaniesProvider } from '../../context/MovieCompaniesContext';
 
 export const App = () =>  {
-  const [selectedMovie, setSelectedMovie] = useState(null); 
-
   return (
-    <Container>
-      <h1>Welcome to Movie database!</h1>
-      <RefreshButton />
-      <Movies selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
-      {selectedMovie && <ReviewForm selectedMovie={selectedMovie} />}
-    </Container>
+    <MovieCompaniesProvider>
+      <MoviesProvider>
+        <Container>
+          <h1>Welcome to Movie database!</h1>
+          <br />
+          <Movies />
+          <ReviewForm />
+        </Container>
+      </MoviesProvider>
+    </MovieCompaniesProvider>
   );
 }
