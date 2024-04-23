@@ -14,6 +14,11 @@ export const ReviewForm = () => {
     selectedMovie,
   } = useReviewForm();
 
+  const onChangeReview = (
+    e: React.SyntheticEvent<Element, Event>,
+    newValue: number | null,
+  ) => setReview((newValue || 0) * 2);
+
   return selectedMovie && (
     <form onSubmit={onSubmit}>
       <Card sx={{
@@ -30,7 +35,7 @@ export const ReviewForm = () => {
         />
         <CardContent>
             <p>Please provide some feedback about the movie</p>
-            <Review values={[review]} onChange={(e, newValue) => setReview(newValue * 2)}/>
+            <Review values={[review]} onChange={onChangeReview}/>
             <br />
             <TextField
               sx={{ width: '100%' }}

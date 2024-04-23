@@ -23,7 +23,7 @@ const columns: GridColDef<(typeof mockMovieData)[number]>[] = [
   {
     field: 'reviews',
     headerName: 'Reviews',
-    width: 150,
+    width: 180,
     editable: false,
     renderCell: ({ value }) => <Review values={value} readOnly />,
   },

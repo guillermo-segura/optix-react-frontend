@@ -1,38 +1,63 @@
-import Box from '@mui/material/Box';
-import { Chip, Rating as MaterialRating } from '@mui/material';
+import { Box, Chip, Rating } from '@mui/material';
 
-const labels: { [index: string]: string } = {
-  0.5: 'Useless',
-  1: 'Useless+',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Ok+',
+interface Labels {
+  [index: string]: string;
+}
+
+export interface ReviewProps {
+  values: number[];
+  readOnly?: boolean;
+  onChange?: (event: React.SyntheticEvent<Element, Event>, value: number | null) => void;
+}
+
+const labels: Labels = {
+  0.5: 'Disastrous',
+  1: 'Awful',
+  1.5: 'Terrible',
+  2: 'Bad',
+  2.5: 'Mediocre',
+  3: 'Decent',
   3.5: 'Good',
-  4: 'Good+',
-  4.5: 'Excellent',
-  5: 'Excellent+',
+  4: 'Great',
+  4.5: 'Fantastic',
+  5: 'Masterpiece',
 };
 
-export const Review = ({ values, readOnly, onChange }) => {
-  const value = Math.floor(values.reduce((acc, item) => (acc + item), 0) / values.length);
+const round = (value: number, precision: number): number => {
+  var multiplier = Math.pow(10, precision || 0);
+  return Math.round(value * multiplier) / multiplier;
+}
+
+const avg = (values: number[]): number => {
+  return (values.reduce((total, value) => (total + value), 0)) / values.length;
+}
+
+export const Review = ({
+  values,
+  readOnly = false,
+  onChange = undefined,
+}: ReviewProps): React.ReactNode => {
+  const value = round(avg(values), 1);
+  
   return (
     <Box
       sx={{
-        width: 'max-content',
         height: '100%',
+        minHeight: '40px',
         display: 'flex',
         alignItems: 'center',
       }}
     >
-      <MaterialRating
-        name="text-feedback"
-        value={value/2}
+      <Rating
+        sx={{ marginRight: '6px' }}
+        name="movie-review"
+        value={value / 2}
         onChange={onChange}
         readOnly={readOnly}
         precision={0.5}
       />
-      {!readOnly && value > 0 && <Chip sx={{ marginLeft: '6px' }} label={labels[value / 2]} />}
+      {readOnly && <span>{value}</span>}
+      {!readOnly && value > 0 && <Chip label={labels[value / 2]} />}
     </Box>
   );
 }
