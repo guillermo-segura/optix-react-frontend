@@ -1,14 +1,26 @@
+import { useContext } from "react";
+
+import { Context as MoviesContext } from "../../context/MoviesContext";
 export interface MoviesHeaderProps {
   moviesCount?: number;
 }
 
 
-export const MoviesHeader = ({ moviesCount = 0 }: MoviesHeaderProps) =>  {
+export const MoviesHeader = () =>  {
+  const { state: { movies } } = useContext(MoviesContext);
+
+  const getHeader = (count: number): string => {
+    if (count < 1) {
+      return 'Sorry, there are no movies this time';
+    }
+
+    if (count === 1) {
+      return 'There is 1 movie in our DB';
+    }
+
+    return `There are ${count} movies in our DB`;
+  }
   return (
-    <>
-      {moviesCount > 1 && <h2>We've found {moviesCount} movies in total</h2>}
-      {moviesCount === 1 && <h2>We've found just 1 movie</h2>}
-      {moviesCount < 1 && <h2>We haven't found any movie</h2>}
-    </>
+    <h2>{getHeader(movies.length)}</h2>
   );
 }
