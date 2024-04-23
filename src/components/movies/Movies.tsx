@@ -45,7 +45,7 @@ const columns: GridColDef<(typeof mockMovieData)[number]>[] = [
 ];
 
 export const Movies = () =>  {
-  const { fetchMovies, state: { movies }, selectMovie } = useContext(MoviesContext);
+  const { fetchMovies, state: { movies, selectedMovie }, selectMovie } = useContext(MoviesContext);
   const { fetchMovieCompanies, state: { movieCompanies } } = useContext(MovieCompaniesContext);
 
   useEffect(() => {
@@ -84,6 +84,7 @@ export const Movies = () =>  {
             const movie = rows.find((movie) => movie.id === selectedMovieId[0]);
             selectMovie(movie);
           }}
+          rowSelectionModel={selectedMovie?.id ? [selectedMovie.id] : []}
           checkboxSelection
           disableMultipleRowSelection
         />
