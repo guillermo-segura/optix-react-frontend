@@ -5,16 +5,19 @@ import { Context as MovieContext } from '../../context/MoviesContext';
 
 
 export const ReviewForm = () => {
-  const { state } = useContext(MovieContext);
+  const { selectMovie, state: { selectedMovie } } = useContext(MovieContext);
   const [description, setDescription] = useState('');
   const [rating, setRating] = useState(0);
+
+  const onCancel = () => {
+    selectMovie(undefined);
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('Submit clicked', description, rating);
+    onCancel(undefined);
   };
-
-  const selectedMovie = state.selectedMovie;
 
   return selectedMovie && (
     <form onSubmit={onSubmit}>
@@ -23,7 +26,7 @@ export const ReviewForm = () => {
       }}>
         <CardHeader
           title={selectedMovie.title}
-          subheader="[INSERT COMPANY HERE]"
+          subheader={selectedMovie?.companyName}
           avatar={
             <Avatar aria-label="recipe">
               {selectedMovie.title?.split('')[0]}
@@ -46,7 +49,7 @@ export const ReviewForm = () => {
         </CardContent>
 
         <CardActions>
-          <Button>Cancel</Button>
+          <Button onClick={onCancel}>Cancel</Button>
           <Button type="submit" variant="contained">Submit</Button>
         </CardActions>
       </Card>
