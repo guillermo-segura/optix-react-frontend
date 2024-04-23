@@ -2,9 +2,15 @@ import { Movie, MovieCompany } from './models';
 
 // MoviesContext
 
+export interface SubmitReviewPayload {
+  message: string;
+  review: number;
+}
+
 export interface MoviesContext {
   state: MoviesContextState;
   fetchMovies: () => Promise<void>;
+  submitReview: (payload: SubmitReviewPayload) => Promise<void>;
   selectMovie: (movie: Movie | undefined) => void;
 }
 

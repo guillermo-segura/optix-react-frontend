@@ -6,6 +6,7 @@ import {
   MoviesContextAction,
   MoviesContextActionTypes,
   MoviesContext,
+  SubmitReviewPayload,
 } from '../utils/types/context';
 import moviesApi from '../api/moviesApi';
 
@@ -18,6 +19,7 @@ const INITIAL_STATE: MoviesContextState = {
 const INITIAL_CONTEXT: MoviesContext = {
   state: INITIAL_STATE,
   fetchMovies: () => Promise.resolve(),
+  submitReview: (payload: SubmitReviewPayload) => Promise.resolve(),
   selectMovie: () => null,
 }
 
@@ -61,6 +63,26 @@ const fetchMovies = (
   });
 };
 
+const submitReview = (
+  dispatch: React.Dispatch<MoviesContextAction>
+) => async (payload: SubmitReviewPayload): Promise<void> => {
+  await moviesApi.post('/submitReview', { payload })
+  .then((res) => {
+    // dispatch({
+    //   type: ACTION_TYPES.setMovies,
+    //   payload: res.data,
+    // })
+
+    console.log(res);
+  }).
+  catch((err) => {
+    dispatch({
+      type: ACTION_TYPES.setError,
+      payload: err.message,
+    })
+  });
+};
+
 const selectMovie = (
   dispatch: React.Dispatch<MoviesContextAction>
 ) => (movie: Movie | undefined): void => {
@@ -77,6 +99,7 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
 
   const actions = {
     fetchMovies: fetchMovies(dispatch),
+    submitReview: submitReview(dispatch),
     selectMovie: selectMovie(dispatch),
   };
 

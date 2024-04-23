@@ -6,7 +6,7 @@ const DEFAULT_MESSAGE = '';
 const DEFAULT_REVIEW = 0;
 
 export const useReviewForm = () => {
-  const { selectMovie, state: { selectedMovie } } = useContext(MovieContext);
+  const { selectMovie, submitReview, state: { selectedMovie } } = useContext(MovieContext);
   const [message, setMessage] = useState(DEFAULT_MESSAGE);
   const [review, setReview] = useState(DEFAULT_REVIEW);
 
@@ -22,7 +22,7 @@ export const useReviewForm = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Submit clicked', message, review);
+    submitReview({ message, review });
     resetForm();
   };
 
