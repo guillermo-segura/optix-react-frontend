@@ -1,4 +1,3 @@
-import { useState, useContext } from 'react';
 import { Container } from '@mui/material';
 // import { easeIn, easeOut } from "polished";
 // import { useBoolean } from "react-use";
@@ -14,7 +13,7 @@ export const App = () =>  {
     <MovieCompaniesProvider>
       <MoviesProvider>
         <Container>
-          <h1>Welcome to Movie database!</h1>
+          <h1>Welcome to MovieDB!</h1>
           <br />
           <Movies />
           <ReviewForm />
