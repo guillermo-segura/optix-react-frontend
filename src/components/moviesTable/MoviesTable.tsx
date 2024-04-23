@@ -11,13 +11,13 @@ const columns: GridColDef<Movie[]>[] = [
   {
     field: 'title',
     headerName: 'Title',
-    width: 200,
+    width: 180,
     editable: false,
   },
   {
     field: 'companyName',
     headerName: 'Company',
-    width: 200,
+    width: 180,
     editable: false,
   },
   {

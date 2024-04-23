@@ -1,6 +1,7 @@
 import { Box, Chip, Rating } from '@mui/material';
 
 import { round, avg } from '../../../utils/helpers/math';
+import { useScreenSize } from '../../../hooks/useScreenSize/useScreenSize';
 
 interface Labels {
   [index: string]: string;
@@ -31,6 +32,7 @@ export const Review = ({
   onChange = undefined,
 }: ReviewProps): React.ReactNode => {
   const value = round(avg(values), 1);
+  const screenSize = useScreenSize();
   
   return (
     <Box
@@ -48,8 +50,9 @@ export const Review = ({
         onChange={onChange}
         readOnly={readOnly}
         precision={0.5}
+        max={readOnly && screenSize === 'sm' ? 1 : 5}
       />
-      {readOnly && <span>{value}</span>}
+      {readOnly && <span>{value} / 10</span>}
       {!readOnly && value > 0 && <Chip label={labels[value / 2]} />}
     </Box>
   );

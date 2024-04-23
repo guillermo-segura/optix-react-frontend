@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { Button } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { Autorenew } from "@mui/icons-material";
 
+import { useScreenSize } from "../../hooks/useScreenSize/useScreenSize";
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 import { Context as MoviesContext } from '../../context/MoviesContext';
 
 export const RefreshMoviesButton = () => {
   const { fetchMovies } = useContext(MoviesContext);
   const { fetchMovieCompanies } = useContext(MovieCompaniesContext);
-  
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const screenSize = useScreenSize();
+
+  const isSmallScreen = screenSize === 'sm';
 
   const onClick = () => {
     fetchMovieCompanies();
