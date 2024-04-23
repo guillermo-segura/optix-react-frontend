@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { Rating as MaterialRating, Tooltip } from '@mui/material';
+import { Chip, Rating as MaterialRating, Tooltip } from '@mui/material';
 
 const labels: { [index: string]: string } = {
   0.5: 'Useless',
@@ -14,7 +14,7 @@ const labels: { [index: string]: string } = {
   5: 'Excellent+',
 };
 
-export const Rating = ({ values }) => {
+export const Rating = ({ values, readOnly, onChange }) => {
   const value = Math.floor(values.reduce((acc, item) => (acc + item), 0) / values.length);
   return (
     <Tooltip title={`${value} / 10`} placement="left">
@@ -29,10 +29,11 @@ export const Rating = ({ values }) => {
         <MaterialRating
           name="text-feedback"
           value={value/2}
-          readOnly
+          onChange={onChange}
+          readOnly={readOnly}
           precision={0.5}
-          size="small"
         />
+        {!readOnly && value > 0 && <Chip sx={{ marginLeft: '6px' }} label={labels[value / 2]} />}
       </Box>
     </Tooltip>
   );
