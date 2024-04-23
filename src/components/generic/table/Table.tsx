@@ -1,9 +1,22 @@
+import { memo } from 'react';
 import { Box } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowSelectionModel, GridCallbackDetails, GridInputRowSelectionModel } from '@mui/x-data-grid';
 
 const PAGE_SIZE = 10;
 
-export const Table = ({ rows, columns, onClickRow, selectedRow }) =>  {
+export interface TableProps {
+  rows: any[];
+  columns: readonly GridColDef<any>[];
+  onClickRow?: (rowSelectionModel: GridRowSelectionModel, details: GridCallbackDetails<any>) => void;
+  selectedRow?: GridInputRowSelectionModel
+}
+
+export const Table = memo(({
+  rows,
+  columns,
+  onClickRow,
+  selectedRow
+}: TableProps): React.ReactNode =>  {
   return (
     <Box sx={{ width: '100%' }}>
       <DataGrid
@@ -17,4 +30,4 @@ export const Table = ({ rows, columns, onClickRow, selectedRow }) =>  {
       />
     </Box>
   );
-}
+});

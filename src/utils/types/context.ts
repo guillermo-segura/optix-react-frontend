@@ -1,4 +1,4 @@
-import { Movie } from './models';
+import { Movie, MovieCompany } from './models';
 
 // MoviesContext
 
@@ -33,7 +33,7 @@ export interface MovieCompaniesContext {
 }
 
 export interface MovieCompaniesContextState {
-  movieCompanies: Movie[],
+  movieCompanies: MovieCompany[],
   error: string,
 }
 
