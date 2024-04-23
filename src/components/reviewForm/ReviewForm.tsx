@@ -1,23 +1,11 @@
 import { Avatar, Card, CardContent, CardHeader, TextField, CardActions, Button } from "@mui/material";
-import { useState, useContext } from "react";
+
 import { Rating } from "../generic/rating/Rating";
-import { Context as MovieContext } from '../../context/MoviesContext';
+import { useReviewForm } from "../../hooks/useReviewForm/useReviewForm";
 
 
 export const ReviewForm = () => {
-  const { selectMovie, state: { selectedMovie } } = useContext(MovieContext);
-  const [description, setDescription] = useState('');
-  const [rating, setRating] = useState(0);
-
-  const onCancel = () => {
-    selectMovie(undefined);
-  }
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submit clicked', description, rating);
-    onCancel(undefined);
-  };
+  const { onCancel, onSubmit, values, setValues, selectedMovie } = useReviewForm();
 
   return selectedMovie && (
     <form onSubmit={onSubmit}>
@@ -35,14 +23,14 @@ export const ReviewForm = () => {
         />
         <CardContent>
             <p>Please provide some feedback about the movie</p>
-            <Rating values={[rating]} onChange={(e, newValue) => setRating(newValue * 2)}/>
+            <Rating values={[values.rating]} onChange={(e, newValue) => setValues('rating', newValue * 2)}/>
             <br />
             <TextField
               id="outlined-textarea"
               label="Multiline Placeholder"
               placeholder="Placeholder"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={values.description}
+              onChange={(e) => setValues('description', e.target.value)}
               minRows={4}
               multiline
             />
