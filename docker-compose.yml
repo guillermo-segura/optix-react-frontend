@@ -1,0 +1,12 @@
+services:
+  optix_react_frontend:
+    image: node:alpine
+    container_name: optix_react_frontend
+    ports:
+      - 8080:3000
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    command: sh -c "npm install && npm start"
