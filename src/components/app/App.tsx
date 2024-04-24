@@ -1,7 +1,4 @@
 import { Container, Typography } from '@mui/material';
-// import { easeIn, easeOut } from "polished";
-// import { useBoolean } from "react-use";
-// import { createReducer }from "@reduxjs/toolkit"
 
 import { Movies } from '../movies/Movies';
 import { Provider as MoviesProvider } from '../../context/MoviesContext';

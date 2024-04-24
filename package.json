@@ -14,14 +14,11 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.11.0",
     "@mui/x-data-grid": "^7.3.0",
-    "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.6.8",
-    "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.11.1",
-    "react-router-dom": "^6.11.1",
-    "react-use": "^17.4.0"
+    "react-router-dom": "^6.11.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.79",
