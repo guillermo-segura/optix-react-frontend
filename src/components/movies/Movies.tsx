@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import { MoviesHeader } from '../moviesHeader/MoviesHeader';
 import { MoviesTable } from '../moviesTable/MoviesTable';
@@ -30,7 +30,9 @@ export const Movies = () =>  {
         </Box>
       </Box>
       <Box display="flex" flexDirection="row" alignItems="center" justifyContent="space-between">
-        <p>Please select a movie to add your review</p>
+        <Typography variant="body1" component="p">
+          Please select a movie to add your review
+        </Typography>
         <RefreshMoviesButton />
       </Box>
       <MoviesTable />

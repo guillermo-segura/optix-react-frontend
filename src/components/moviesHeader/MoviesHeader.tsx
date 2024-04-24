@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Typography } from '@mui/material';
 
 import { Context as MoviesContext } from '../../context/MoviesContext';
 export interface MoviesHeaderProps {
@@ -20,6 +21,8 @@ export const MoviesHeader = () =>  {
     return `There are ${count} movies in our DB`;
   }
   return (
-    <h2>{getHeader(movies.length)}</h2>
+    <Typography variant="h4" component="h4" sx={{ padding: '24px 0' }}>
+      {getHeader(movies.length)}
+    </Typography>
   );
 }

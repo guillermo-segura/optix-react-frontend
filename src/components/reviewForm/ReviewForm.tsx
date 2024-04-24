@@ -1,7 +1,16 @@
-import { Avatar, Card, CardContent, CardHeader, TextField, CardActions, Button } from '@mui/material';
+import {
+  Avatar,
+  CardContent,
+  CardHeader,
+  TextField,
+  CardActions,
+  Button,
+  Typography,
+} from '@mui/material';
 
 import { Review } from '../generic/review/Review';
 import { useReviewForm } from '../../hooks/useReviewForm/useReviewForm';
+import { Modal } from '../generic/modal/Modal';
 
 export const ReviewForm = () => {
   const {
@@ -22,10 +31,8 @@ export const ReviewForm = () => {
   const hasErrors = message.length > 100 || review === 0;
 
   return selectedMovie && (
-    <form onSubmit={onSubmit}>
-      <Card sx={{
-        marginTop: '16px',
-      }}>
+    <Modal open={!!selectedMovie} onClose={onCancel}>
+      <form onSubmit={onSubmit}>
         <CardHeader
           title={selectedMovie.title}
           subheader={selectedMovie?.companyName}
@@ -36,7 +43,9 @@ export const ReviewForm = () => {
           }
         />
         <CardContent>
-            <p>Please provide some feedback about the movie</p>
+            <Typography variant="body1" component="p">
+              Please provide some feedback about the movie
+            </Typography>
             <Review values={[review]} onChange={onChangeReview}/>
             <br />
             <TextField
@@ -57,7 +66,7 @@ export const ReviewForm = () => {
           <Button onClick={onCancel}>Cancel</Button>
           <Button type="submit" variant="contained" disabled={hasErrors}>Submit</Button>
         </CardActions>
-      </Card>
-    </form>
+      </form>
+    </Modal>
   );
 };

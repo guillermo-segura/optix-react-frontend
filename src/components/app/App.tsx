@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 // import { easeIn, easeOut } from "polished";
 // import { useBoolean } from "react-use";
 // import { createReducer }from "@reduxjs/toolkit"
@@ -13,7 +13,9 @@ export const App = () =>  {
     <MovieCompaniesProvider>
       <MoviesProvider>
         <Container>
-          <h1>Welcome to MovieDB!</h1>
+          <Typography variant="h2" component="h2" sx={{ marginTop: '24px' }}>
+            Welcome to MovieDB!
+          </Typography>
           <hr />
           <Movies />
           <ReviewForm />
