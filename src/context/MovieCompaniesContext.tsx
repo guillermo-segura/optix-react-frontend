@@ -11,17 +11,23 @@ import moviesApi from '../api/moviesApi';
 
 const INITIAL_STATE: MovieCompaniesContextState = {
   movieCompanies: [],
-  error: '',
+  notification: {
+    visible: false,
+    type: 'success',
+    content: '',
+  },
 };
 
 const INITIAL_CONTEXT: MovieCompaniesContext = {
   state: INITIAL_STATE,
   fetchMovieCompanies: () => Promise.resolve(),
+  closeNotification: () => null,
 }
 
 const ACTION_TYPES: MovieCompanyContextActionTypes = {
   setMovieCompanies: 'SET_MOVIE_COMPANIES_DATA',
-  setError: 'SET_ERROR',
+  setNotification: 'SET_NOTIFICATION',
+  closeNotification: 'CLOSE_NOTIFICATION',
 };
 
 const moviesReducer = (
@@ -30,9 +36,11 @@ const moviesReducer = (
 ): MovieCompaniesContextState => {
   switch (action.type) {
     case ACTION_TYPES.setMovieCompanies:
-      return { ...state, movieCompanies: action.payload, error: '' };
-    case ACTION_TYPES.setError:
-      return { ...state, error: action.payload };
+      return { ...state, movieCompanies: action.payload };
+    case ACTION_TYPES.setNotification:
+      return { ...state, notification: action.payload };
+    case ACTION_TYPES.closeNotification:
+      return { ...state, notification: { ...state.notification, visible: false } };
     default:
       return state;
   }
@@ -49,10 +57,16 @@ const fetchMovieCompanies = (
   }).
   catch((err) => {
     dispatch({
-      type: ACTION_TYPES.setError,
-      payload: err.message,
+      type: ACTION_TYPES.setNotification,
+      payload: { visible: true, type: 'error', content: err.message },
     })
   });
+};
+
+const closeNotification = (
+  dispatch: React.Dispatch<MovieCompanyContextAction>
+) => (): void => {
+  dispatch({ type: ACTION_TYPES.closeNotification });
 };
 
 export const Context = React.createContext<MovieCompaniesContext>(INITIAL_CONTEXT);
@@ -62,6 +76,7 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
 
   const actions = {
     fetchMovieCompanies: fetchMovieCompanies(dispatch),
+    closeNotification: closeNotification(dispatch),
   };
 
   return (

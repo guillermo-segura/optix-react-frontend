@@ -13,19 +13,25 @@ import moviesApi from '../api/moviesApi';
 const INITIAL_STATE: MoviesContextState = {
   movies: [],
   selectedMovie: undefined,
-  error: '',
+  notification: {
+    visible: false,
+    type: 'success',
+    content: '',
+  },
 };
 
 const INITIAL_CONTEXT: MoviesContext = {
   state: INITIAL_STATE,
   fetchMovies: () => Promise.resolve(),
-  submitReview: (payload: SubmitReviewPayload) => Promise.resolve(),
+  submitReview: () => Promise.resolve(),
+  closeNotification: () => null,
   selectMovie: () => null,
 }
 
 const ACTION_TYPES: MoviesContextActionTypes = {
   setMovies: 'SET_MOVIES_DATA',
-  setError: 'SET_ERROR',
+  setNotification: 'SET_NOTIFICATION',
+  closeNotification: 'CLOSE_NOTIFICATION',
   setSelectedMovie: 'SET_SELECTED_MOVIE',
 };
 
@@ -35,9 +41,11 @@ const moviesReducer = (
 ): MoviesContextState => {
   switch (action.type) {
     case ACTION_TYPES.setMovies:
-      return { ...state, movies: action.payload, error: '' };
-    case ACTION_TYPES.setError:
-      return { ...state, error: action.payload };
+      return { ...state, movies: action.payload };
+    case ACTION_TYPES.setNotification:
+      return { ...state, notification: action.payload };
+    case ACTION_TYPES.closeNotification:
+      return { ...state, notification: { ...state.notification, visible: false } };
     case ACTION_TYPES.setSelectedMovie:
       return { ...state, selectedMovie: action.payload };
     default:
@@ -57,8 +65,8 @@ const fetchMovies = (
   }).
   catch((err) => {
     dispatch({
-      type: ACTION_TYPES.setError,
-      payload: err.message,
+      type: ACTION_TYPES.setNotification,
+      payload: { visible: true, type: 'error', content: err.message },
     })
   });
 };
@@ -68,19 +76,23 @@ const submitReview = (
 ) => async (payload: SubmitReviewPayload): Promise<void> => {
   await moviesApi.post('/submitReview', { payload })
   .then((res) => {
-    // dispatch({
-    //   type: ACTION_TYPES.setMovies,
-    //   payload: res.data,
-    // })
-
-    console.log(res);
+    dispatch({
+      type: ACTION_TYPES.setNotification,
+      payload: { visible: true, type: 'success', content: res.data.message },
+    })
   }).
   catch((err) => {
     dispatch({
-      type: ACTION_TYPES.setError,
-      payload: err.message,
+      type: ACTION_TYPES.setNotification,
+      payload: { visible: true, type: 'error', content: err.message },
     })
   });
+};
+
+const closeNotification = (
+  dispatch: React.Dispatch<MoviesContextAction>
+) => (): void => {
+  dispatch({ type: ACTION_TYPES.closeNotification });
 };
 
 const selectMovie = (
@@ -101,6 +113,7 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
     fetchMovies: fetchMovies(dispatch),
     submitReview: submitReview(dispatch),
     selectMovie: selectMovie(dispatch),
+    closeNotification: closeNotification(dispatch),
   };
 
   const value = { state, ...actions };

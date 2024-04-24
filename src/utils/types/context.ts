@@ -12,19 +12,26 @@ export interface MoviesContext {
   fetchMovies: () => Promise<void>;
   submitReview: (payload: SubmitReviewPayload) => Promise<void>;
   selectMovie: (movie: Movie | undefined) => void;
+  closeNotification: () => void;
+}
+
+interface Notification {
+  visible: boolean;
+  type: 'success' | 'error';
+  content: string;
 }
 
 export interface MoviesContextState {
   movies: Movie[],
   selectedMovie: Movie | undefined,
-  error: string,
+  notification: Notification,
 }
 
-export type MoviesContextType = 'SET_MOVIES_DATA' | 'SET_ERROR' | 'SET_SELECTED_MOVIE';
+export type MoviesContextType = 'SET_MOVIES_DATA' | 'SET_NOTIFICATION' | 'SET_SELECTED_MOVIE' | 'CLOSE_NOTIFICATION';
 
 export interface MoviesContextAction {
   type: MoviesContextType;
-  payload: any;
+  payload?: any;
 }
 
 export interface MoviesContextActionTypes {
@@ -36,18 +43,19 @@ export interface MoviesContextActionTypes {
 export interface MovieCompaniesContext {
   state: MovieCompaniesContextState;
   fetchMovieCompanies: () => Promise<void>;
+  closeNotification: () => void;
 }
 
 export interface MovieCompaniesContextState {
   movieCompanies: MovieCompany[],
-  error: string,
+  notification: Notification,
 }
 
-export type MovieCompaniesContextType = 'SET_MOVIE_COMPANIES_DATA' | 'SET_ERROR';
+export type MovieCompaniesContextType = 'SET_MOVIE_COMPANIES_DATA' | 'SET_NOTIFICATION' | 'CLOSE_NOTIFICATION';
 
 export interface MovieCompanyContextAction {
   type: MovieCompaniesContextType;
-  payload: any;
+  payload?: any;
 }
 
 export interface MovieCompanyContextActionTypes {
