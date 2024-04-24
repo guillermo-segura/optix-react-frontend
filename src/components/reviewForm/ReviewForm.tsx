@@ -11,8 +11,13 @@ import {
 import { Review } from '../generic/review/Review';
 import { useReviewForm } from '../../hooks/useReviewForm/useReviewForm';
 import { Modal } from '../generic/modal/Modal';
+import { Movie } from '../../utils/types/models';
 
-export const ReviewForm = () => {
+export interface ReviewFormProps {
+  movie: Movie;
+}
+
+export const ReviewForm = ({ movie }: ReviewFormProps) => {
   const {
     onCancel,
     onSubmit,
@@ -20,7 +25,6 @@ export const ReviewForm = () => {
     message,
     setReview,
     setMessage,
-    selectedMovie,
   } = useReviewForm();
 
   const onChangeReview = (
@@ -30,15 +34,15 @@ export const ReviewForm = () => {
 
   const hasErrors = message.length > 100 || review === 0;
 
-  return selectedMovie && (
-    <Modal open={!!selectedMovie} onClose={onCancel}>
+  return (
+    <Modal open={!!movie} onClose={onCancel}>
       <form onSubmit={onSubmit}>
         <CardHeader
-          title={selectedMovie.title}
-          subheader={selectedMovie?.companyName}
+          title={movie.title}
+          subheader={movie?.companyName}
           avatar={
             <Avatar aria-label="recipe">
-              {selectedMovie.title?.split('')[0]}
+              {movie.title?.split('')[0]}
             </Avatar>
           }
         />

@@ -6,7 +6,7 @@ const DEFAULT_MESSAGE = '';
 const DEFAULT_REVIEW = 0;
 
 export const useReviewForm = () => {
-  const { selectMovie, submitReview, state: { selectedMovie } } = useContext(MovieContext);
+  const { selectMovie, submitReview } = useContext(MovieContext);
   const [message, setMessage] = useState(DEFAULT_MESSAGE);
   const [review, setReview] = useState(DEFAULT_REVIEW);
 
@@ -33,6 +33,5 @@ export const useReviewForm = () => {
     message,
     setReview,
     setMessage,
-    selectedMovie,
   };
 };

@@ -4,7 +4,6 @@ import { Container, Typography } from '@mui/material';
 // import { createReducer }from "@reduxjs/toolkit"
 
 import { Movies } from '../movies/Movies';
-import { ReviewForm } from '../reviewForm/ReviewForm';
 import { Provider as MoviesProvider } from '../../context/MoviesContext';
 import { Provider as MovieCompaniesProvider } from '../../context/MovieCompaniesContext';
 
@@ -18,7 +17,6 @@ export const App = () =>  {
           </Typography>
           <hr />
           <Movies />
-          <ReviewForm />
         </Container>
       </MoviesProvider>
     </MovieCompaniesProvider>

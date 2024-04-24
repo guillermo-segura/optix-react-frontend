@@ -11,9 +11,10 @@ const modalSx = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '400px',
+  maxWidth: '100%',
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 export interface ModalProps {

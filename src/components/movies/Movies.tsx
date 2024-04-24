@@ -5,9 +5,10 @@ import { MoviesTable } from '../moviesTable/MoviesTable';
 import { RefreshMoviesButton } from '../refreshMoviesButton/RefreshMoviesButton';
 import { useMoviesData } from '../../hooks/useMoviesData/useMoviesData';
 import { Notification } from '../generic/notification/Notification';
+import { ReviewForm } from '../reviewForm/ReviewForm';
 
 export const Movies = () =>  {
-  const { movieCompaniesNotification, moviesNotification, closeMoviesNotification, closeMovieCompaniesNotification } = useMoviesData();
+  const { movieCompaniesNotification, moviesNotification, selectedMovie, closeMoviesNotification, closeMovieCompaniesNotification } = useMoviesData();
   return (
     <>
       <MoviesHeader />
@@ -36,6 +37,7 @@ export const Movies = () =>  {
         <RefreshMoviesButton />
       </Box>
       <MoviesTable />
+      {selectedMovie && <ReviewForm movie={selectedMovie} />}
     </>
   );
 }
