@@ -1,4 +1,4 @@
-import { Box, Chip, Rating } from '@mui/material';
+import { Box, Chip, Rating, Typography } from '@mui/material';
 
 import { round, avg } from '../../../utils/helpers/math';
 import { useScreenSize } from '../../../hooks/useScreenSize/useScreenSize';
@@ -11,6 +11,7 @@ export interface ReviewProps {
   values: number[];
   readOnly?: boolean;
   onChange?: (event: React.SyntheticEvent<Element, Event>, value: number | null) => void;
+  label?: string;
 }
 
 const labels: Labels = {
@@ -28,6 +29,7 @@ const labels: Labels = {
 
 export const Review = ({
   values,
+  label = '',
   readOnly = false,
   onChange = undefined,
 }: ReviewProps): React.ReactNode => {
@@ -43,8 +45,9 @@ export const Review = ({
         alignItems: 'center',
       }}
     >
+      {label && <Typography variant="body2">{label}</Typography>}
       <Rating
-        sx={{ marginRight: '6px' }}
+        sx={{ margin: '0 6px' }}
         name="movie-review"
         value={value / 2}
         onChange={onChange}
