@@ -19,6 +19,8 @@ export const ReviewForm = () => {
     newValue: number | null,
   ) => setReview((newValue || 0) * 2);
 
+  const hasErrors = message.length > 100 || review === 0;
+
   return selectedMovie && (
     <form onSubmit={onSubmit}>
       <Card sx={{
@@ -39,19 +41,21 @@ export const ReviewForm = () => {
             <br />
             <TextField
               sx={{ width: '100%' }}
-              id="outlined-textarea"
-              label="Multiline Placeholder"
-              placeholder="Placeholder"
+              error={message.length > 100}
+              helperText={`${message.length}/100`}
+              id="review-message"
+              label="Message"
+              placeholder="Give us more details about your review"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              minRows={4}
+              minRows={2}
               multiline
             />
         </CardContent>
 
         <CardActions>
           <Button onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="contained">Submit</Button>
+          <Button type="submit" variant="contained" disabled={hasErrors}>Submit</Button>
         </CardActions>
       </Card>
     </form>
