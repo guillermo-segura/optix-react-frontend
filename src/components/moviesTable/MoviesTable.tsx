@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react';
 import { GridColDef, GridRowSelectionModel } from '@mui/x-data-grid';
 
 import { Review } from '../generic/review/Review';
+import { round, avg } from '../../utils/helpers/math';
 import { Context as MoviesContext } from '../../context/MoviesContext';
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 import { Table } from '../generic/table/Table';
@@ -25,7 +26,8 @@ const columns: GridColDef<Movie[]>[] = [
     headerName: 'Reviews',
     width: 200,
     editable: false,
-    renderCell: ({ value }) => <Review values={value} readOnly />,
+    valueGetter: (value) => round(avg(value), 1),
+    renderCell: ({ value }) => <Review value={value} readOnly />,
   },
   {
     field: 'releaseYear',

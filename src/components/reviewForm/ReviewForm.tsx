@@ -48,7 +48,7 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
           }
         />
         <CardContent>
-            <Review values={[review]} onChange={onChangeReview} label="Your review:" />
+            <Review value={review} onChange={onChangeReview} label="Your review:" />
             <br />
             <TextField
               sx={{ width: '100%' }}

@@ -8,7 +8,7 @@ interface Labels {
 }
 
 export interface ReviewProps {
-  values: number[];
+  value: number;
   readOnly?: boolean;
   onChange?: (event: React.SyntheticEvent<Element, Event>, value: number | null) => void;
   label?: string;
@@ -28,12 +28,11 @@ const labels: Labels = {
 };
 
 export const Review = ({
-  values,
+  value,
   label = '',
   readOnly = false,
   onChange = undefined,
 }: ReviewProps): React.ReactNode => {
-  const value = round(avg(values), 1);
   const screenSize = useScreenSize();
   
   return (
