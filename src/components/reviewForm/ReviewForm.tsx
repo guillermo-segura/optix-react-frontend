@@ -5,7 +5,6 @@ import {
   TextField,
   CardActions,
   Button,
-  Typography,
 } from '@mui/material';
 
 import { Review } from '../generic/review/Review';
@@ -34,6 +33,8 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
   ) => setReview((newValue || 0) * 2);
 
   const hasErrors = message.length > 100 || review === 0;
+  const onMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value);
+  const helperText = message.length > 100  ? `${message.length}/100. Message is too long.` : `${message.length}/100`;
 
   return (
     <Modal open={!!movie} onClose={onCancel}>
@@ -53,12 +54,12 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
             <TextField
               sx={{ width: '100%' }}
               error={message.length > 100}
-              helperText={`${message.length}/100`}
+              helperText={helperText}
               id="review-message"
               label="Message"
               placeholder="Please provide some feedback about the movie"
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={onMessageChange}
               minRows={2}
               multiline
             />
