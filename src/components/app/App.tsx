@@ -9,7 +9,7 @@ export const App = () =>  {
   return (
     <MovieCompaniesProvider>
       <MoviesProvider>
-        <Container sx={{ position: 'relative' }}>
+        <Container sx={{ position: 'relative', paddingBottom: '80px' }}>
           <NotificationsContainer />
           <Typography variant="h2" component="h2" sx={{ marginTop: '24px' }}>
             Welcome to MovieDB!

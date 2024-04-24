@@ -2,17 +2,59 @@
 
 ### Description
 
+This's been a fun project. I was familiar with MUI, but I've never used it as much as in this project.
+
+This is also the first time I set up a Docker image; I've used them in the past, but I wasn't the person doing the images' setup.
+
+![homepage](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/homepage.png?raw=true)
+
+For the interactive table, I've used the Data Grid from MUI X. I believe that it is a scalable solution that fulfills all the requirements out of the box.
+
+I've also made use of the Rating component, which I found very useful from a user point of view; I made a a custom Review component with it to add responsiveness and display the review score of the movies.
+
+![review_card](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/review_card.png?raw=true)
+
+Finally, I've made some closeable notifications and displayed them at the top-right side of the screen.
+
+![notification](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/notification.png?raw=true)
+
+### Mobile version
+
+On small screens, I made sure the refresh buttons displays only the icon, and my Review component displays a single star - following IMDB's approach.
+
+The review form is displayed in a modal as requested.
+
+![homepage_sm](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/homepage_sm.png?raw=true)
+
+![review_modal](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/review_modal.png?raw=true)
+
 ### Setup
 
-- npm install
+These are the steps to run this project locally:
+
+1. Clone repository
+
+2. Create `.env` file
+
+3. Mount Docker image
+
+If you want to run this project directly in your local machine:
+
+4. Install dependencies
+
+5. Run `vite`
 
 - cp .env.example .env
-
 - npm run dev
+- npm install
+
+
 
 - npm start
 
 ## Technical Challenge
+
+![initial-project](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/initial_project.png?raw=true)
 
 Our developer was part way through developing the following feature but left the company and you are tasked with picking up where they left off.
 
