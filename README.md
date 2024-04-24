@@ -34,23 +34,35 @@ These are the steps to run this project locally:
 
 1. Clone repository
 
+```
+    git clone git@github.com:guillermo-segura/optix-react-frontend.git
+```
+
 2. Create `.env` file
 
+```
+    cp .env.example .env
+```
+
 3. Mount Docker image
+
+```
+    npm run dev
+```
 
 If you want to run this project directly in your local machine:
 
 4. Install dependencies
 
+```
+    npm install
+```
+
 5. Run `vite`
 
-- cp .env.example .env
-- npm run dev
-- npm install
-
-
-
-- npm start
+```
+    npm start
+```
 
 ## Technical Challenge
 
