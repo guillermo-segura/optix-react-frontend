@@ -58,7 +58,7 @@ const fetchMovieCompanies = (
   catch((err) => {
     dispatch({
       type: ACTION_TYPES.setNotification,
-      payload: { visible: true, type: 'error', content: err.message },
+      payload: { visible: true, type: 'error', content: 'There was a problem loading movie companies' },
     })
   });
 };
