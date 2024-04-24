@@ -23,7 +23,7 @@ export interface ModalProps {
   onClose: () => void;
 }
 
-export const Modal = ({ children, open, onClose }: ModalProps): React.ReactNode => {
+export const Modal = ({ children, open, onClose }: ModalProps): JSX.Element => {
   const screenSize = useScreenSize();
 
   if (screenSize === 'sm') {

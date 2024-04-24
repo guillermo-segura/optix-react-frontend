@@ -32,7 +32,7 @@ export const Review = ({
   label = '',
   readOnly = false,
   onChange = undefined,
-}: ReviewProps): React.ReactNode => {
+}: ReviewProps): JSX.Element => {
   const screenSize = useScreenSize();
   
   return (

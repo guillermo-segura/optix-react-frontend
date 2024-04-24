@@ -121,7 +121,7 @@ const selectMovie = (
 
 export const Context = React.createContext<MoviesContext>(INITIAL_CONTEXT);
 
-export const Provider = ({ children }: { children: React.ReactNode }) => {
+export const Provider = ({ children }: { children: JSX.Element }) => {
   const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE);
 
   const actions = {

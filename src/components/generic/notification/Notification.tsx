@@ -10,7 +10,7 @@ export const Notification = ({
   severity,
   content,
   onClose,
-}: NotificationProps): React.ReactNode => {
+}: NotificationProps): JSX.Element => {
   return (
     <Alert sx={{ width: 'max-content', marginBottom: '6px', zIndex: 100 }}severity={severity} onClose={onClose}>
       {content}

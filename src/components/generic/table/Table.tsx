@@ -16,7 +16,7 @@ export const Table = memo(({
   columns,
   onClickRow,
   selectedRow
-}: TableProps): React.ReactNode =>  {
+}: TableProps): JSX.Element =>  {
   return (
     <Box sx={{ width: '100%' }}>
       <DataGrid

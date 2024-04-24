@@ -71,7 +71,7 @@ const closeNotification = (
 
 export const Context = React.createContext<MovieCompaniesContext>(INITIAL_CONTEXT);
 
-export const Provider = ({ children }: { children: React.ReactNode }) => {
+export const Provider = ({ children }: { children: JSX.Element }) => {
   const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE);
 
   const actions = {
