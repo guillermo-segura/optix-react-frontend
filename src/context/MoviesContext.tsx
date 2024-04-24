@@ -11,6 +11,7 @@ import {
 import moviesApi from '../api/moviesApi';
 
 const INITIAL_STATE: MoviesContextState = {
+  loading: false,
   movies: [],
   selectedMovie: undefined,
   notification: {
@@ -33,6 +34,7 @@ const ACTION_TYPES: MoviesContextActionTypes = {
   setNotification: 'SET_NOTIFICATION',
   closeNotification: 'CLOSE_NOTIFICATION',
   setSelectedMovie: 'SET_SELECTED_MOVIE',
+  setLoading: 'SET_LOADING',
 };
 
 const moviesReducer = (
@@ -48,6 +50,8 @@ const moviesReducer = (
       return { ...state, notification: { ...state.notification, visible: false } };
     case ACTION_TYPES.setSelectedMovie:
       return { ...state, selectedMovie: action.payload };
+    case ACTION_TYPES.setLoading:
+      return { ...state, loading: action.payload };
     default:
       return state;
   }
@@ -56,19 +60,30 @@ const moviesReducer = (
 const fetchMovies = (
   dispatch: React.Dispatch<MoviesContextAction>
 ) => async (): Promise<void> => {
+  dispatch({
+    type: ACTION_TYPES.setLoading,
+    payload: true,
+  });
+
   await moviesApi.get<Movie[]>('/movies')
   .then((res) => {
     dispatch({
       type: ACTION_TYPES.setMovies,
       payload: res.data,
     })
-  }).
-  catch((err) => {
+  })
+  .catch((err) => {
     dispatch({
       type: ACTION_TYPES.setNotification,
       payload: { visible: true, type: 'error', content: 'There was a problem fetching movies' },
     })
-  });
+  })
+  .finally(() => {
+    dispatch({
+      type: ACTION_TYPES.setLoading,
+      payload: false,
+    });
+  })
 };
 
 const submitReview = (

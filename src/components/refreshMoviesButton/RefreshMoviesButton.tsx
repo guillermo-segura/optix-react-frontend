@@ -7,7 +7,7 @@ import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesCo
 import { Context as MoviesContext } from '../../context/MoviesContext';
 
 export const RefreshMoviesButton = () => {
-  const { fetchMovies } = useContext(MoviesContext);
+  const { fetchMovies, state: { loading } } = useContext(MoviesContext);
   const { fetchMovieCompanies } = useContext(MovieCompaniesContext);
   const screenSize = useScreenSize();
 
@@ -24,8 +24,10 @@ export const RefreshMoviesButton = () => {
       size="small"
       startIcon={!isSmallScreen && <Autorenew />}
       onClick={onClick}
+      disabled={loading}
     >
-        {isSmallScreen ? <Autorenew /> : 'Refresh'}
+        {isSmallScreen && <Autorenew />}
+        {!isSmallScreen && (loading ? 'Refreshing' : 'Refresh')}
     </Button>
   );
 }

@@ -4,7 +4,7 @@ import { Context as MoviesContext } from '../../context/MoviesContext';
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 
 export const useMoviesData = () => {
-  const { fetchMovies, state: { selectedMovie } } = useContext(MoviesContext);
+  const { fetchMovies, state: { selectedMovie, loading, movies } } = useContext(MoviesContext);
   const { fetchMovieCompanies } = useContext(MovieCompaniesContext);
 
   useEffect(() => {
@@ -14,5 +14,7 @@ export const useMoviesData = () => {
 
   return {
     selectedMovie,
+    loading,
+    movies,
   };
 }

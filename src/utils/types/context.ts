@@ -25,9 +25,10 @@ export interface MoviesContextState {
   movies: Movie[],
   selectedMovie: Movie | undefined,
   notification: Notification,
+  loading: boolean,
 }
 
-export type MoviesContextType = 'SET_MOVIES_DATA' | 'SET_NOTIFICATION' | 'SET_SELECTED_MOVIE' | 'CLOSE_NOTIFICATION';
+export type MoviesContextType = 'SET_MOVIES_DATA' | 'SET_NOTIFICATION' | 'SET_SELECTED_MOVIE' | 'CLOSE_NOTIFICATION' | 'SET_LOADING';
 
 export interface MoviesContextAction {
   type: MoviesContextType;

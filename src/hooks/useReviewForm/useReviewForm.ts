@@ -9,6 +9,7 @@ export const useReviewForm = () => {
   const { selectMovie, submitReview } = useContext(MovieContext);
   const [message, setMessage] = useState(DEFAULT_MESSAGE);
   const [review, setReview] = useState(DEFAULT_REVIEW);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const resetForm = () => {
     selectMovie(undefined);
@@ -22,8 +23,11 @@ export const useReviewForm = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    submitReview({ message, review });
-    resetForm();
+    setIsSubmitting(true);
+    submitReview({ message, review }).then(() => {
+      setIsSubmitting(false);
+      resetForm();
+    });
   };
 
   return {
@@ -33,5 +37,6 @@ export const useReviewForm = () => {
     message,
     setReview,
     setMessage,
+    isSubmitting,
   };
 };

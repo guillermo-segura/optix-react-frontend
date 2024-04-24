@@ -25,6 +25,7 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
     message,
     setReview,
     setMessage,
+    isSubmitting,
   } = useReviewForm();
 
   const onChangeReview = (
@@ -41,16 +42,13 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
           title={movie.title}
           subheader={movie?.companyName}
           avatar={
-            <Avatar aria-label="recipe">
+            <Avatar>
               {movie.title?.split('')[0]}
             </Avatar>
           }
         />
         <CardContent>
-            <Typography variant="body1" component="p">
-              Please provide some feedback about the movie
-            </Typography>
-            <Review values={[review]} onChange={onChangeReview}/>
+            <Review values={[review]} onChange={onChangeReview} label="Your review:" />
             <br />
             <TextField
               sx={{ width: '100%' }}
@@ -58,7 +56,7 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
               helperText={`${message.length}/100`}
               id="review-message"
               label="Message"
-              placeholder="Give us more details about your review"
+              placeholder="Please provide some feedback about the movie"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               minRows={2}
@@ -67,8 +65,8 @@ export const ReviewForm = ({ movie }: ReviewFormProps) => {
         </CardContent>
 
         <CardActions>
-          <Button onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="contained" disabled={hasErrors}>Submit</Button>
+          <Button onClick={onCancel} disabled={isSubmitting}>Cancel</Button>
+          <Button type="submit" variant="contained" disabled={hasErrors || isSubmitting}>{isSubmitting ? 'Submitting' : 'Submit'}</Button>
         </CardActions>
       </form>
     </Modal>
