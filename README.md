@@ -4,6 +4,14 @@
 
 ### Setup
 
+- npm install
+
+- cp .env.example .env
+
+- npm run dev
+
+- npm start
+
 ## Technical Challenge
 
 Our developer was part way through developing the following feature but left the company and you are tasked with picking up where they left off.
