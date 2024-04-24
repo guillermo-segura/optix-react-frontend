@@ -1,3 +1,11 @@
+## Optix React Frontend
+
+### Description
+
+### Setup
+
+## Technical Challenge
+
 Our developer was part way through developing the following feature but left the company and you are tasked with picking up where they left off.
 
 The aim is to complete the piece of work by refactoring and improving the current code to get it to a working state that passes all A/C. Use material UI components and a form library where desirable.
