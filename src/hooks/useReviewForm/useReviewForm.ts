@@ -1,12 +1,12 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
-import { Context as MovieContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/MoviesContext';
 
 const DEFAULT_MESSAGE = '';
 const DEFAULT_REVIEW = 0;
 
 export const useReviewForm = () => {
-  const { selectMovie, submitReview } = useContext(MovieContext);
+  const { selectMovie, submitReview } = useMoviesContext();
   const [message, setMessage] = useState(DEFAULT_MESSAGE);
   const [review, setReview] = useState(DEFAULT_REVIEW);
   const [isSubmitting, setIsSubmitting] = useState(false);

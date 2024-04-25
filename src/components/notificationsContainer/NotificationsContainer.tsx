@@ -1,19 +1,18 @@
-import { useContext } from 'react';
 import { Box } from '@mui/material';
 
-import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
-import { Context as MoviesContext } from '../../context/MoviesContext';
+import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMoviesContext } from '../../context/MoviesContext';
 import { Notification } from '../generic/notification/Notification';
 
 export const NotificationsContainer = () =>  {
   const {
     closeNotification: closeMoviesNotification,
     state: { notification: moviesNotification },
-  } = useContext(MoviesContext);
+  } = useMoviesContext();
   const {
     closeNotification: closeMovieCompaniesNotification,
     state: { notification: movieCompaniesNotification },
-  } = useContext(MovieCompaniesContext);
+  } = useMovieCompaniesContext();
 
   return (
     <Box

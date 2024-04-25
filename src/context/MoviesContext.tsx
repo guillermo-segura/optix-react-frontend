@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 
 import { Movie } from '../utils/types/models';
 import {
@@ -121,7 +121,9 @@ const selectMovie = (
 
 export const Context = React.createContext<MoviesContext>(INITIAL_CONTEXT);
 
-export const Provider = ({ children }: { children: JSX.Element }) => {
+export const useMoviesContext = () => useContext(Context);
+
+export const MoviesProvider = ({ children }: { children: JSX.Element }) => {
   const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE);
 
   const actions = {

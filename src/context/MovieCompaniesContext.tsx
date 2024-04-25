@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 
 import { MovieCompany } from '../utils/types/models';
 import {
@@ -71,7 +71,9 @@ const closeNotification = (
 
 export const Context = React.createContext<MovieCompaniesContext>(INITIAL_CONTEXT);
 
-export const Provider = ({ children }: { children: JSX.Element }) => {
+export const useMovieCompaniesContext = () => useContext(Context);
+
+export const MovieCompaniesProvider = ({ children }: { children: JSX.Element }) => {
   const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE);
 
   const actions = {

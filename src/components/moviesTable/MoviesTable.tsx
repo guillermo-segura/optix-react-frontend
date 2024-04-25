@@ -1,9 +1,8 @@
-import { useContext } from 'react';
 import { GridColDef, GridRowSelectionModel } from '@mui/x-data-grid';
 
 import { Movie } from '../../utils/types/models';
 import { round, avg } from '../../utils/helpers/math';
-import { Context as MoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/MoviesContext';
 import { Review } from '../generic/review/Review';
 import { Table } from '../generic/table/Table';
 
@@ -41,7 +40,7 @@ export interface MoviesTableProps {
 }
 
 export const MoviesTable = ({ movies }: MoviesTableProps) =>  {
-  const { state: { selectedMovie }, selectMovie } = useContext(MoviesContext);
+  const { state: { selectedMovie }, selectMovie } = useMoviesContext();
 
   const onClickRow = (selectedMovieIds: GridRowSelectionModel) => {
     const movie = movies.find((movie) => movie.id === selectedMovieIds[0]);

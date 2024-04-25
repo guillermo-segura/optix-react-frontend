@@ -1,7 +1,7 @@
-import { useEffect, useContext, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
-import { Context as MoviesContext } from '../../context/MoviesContext';
-import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMoviesContext } from '../../context/MoviesContext';
+import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
 import { Movie } from '../../utils/types/models';
 
 export interface UseMoviesData {
@@ -11,8 +11,8 @@ export interface UseMoviesData {
 }
 
 export const useMoviesData = (): UseMoviesData => {
-  const { fetchMovies, state: { selectedMovie, loading, movies } } = useContext(MoviesContext);
-  const { fetchMovieCompanies, state: { movieCompanies } } = useContext(MovieCompaniesContext);
+  const { fetchMovies, state: { selectedMovie, loading, movies } } = useMoviesContext();
+  const { fetchMovieCompanies, state: { movieCompanies } } = useMovieCompaniesContext();
 
   useEffect(() => {
     fetchMovieCompanies();

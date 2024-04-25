@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
 
-import { Provider as MoviesProvider } from '../../context/MoviesContext';
-import { Provider as MovieCompaniesProvider } from '../../context/MovieCompaniesContext';
+import { MoviesProvider } from '../../context/MoviesContext';
+import { MovieCompaniesProvider } from '../../context/MovieCompaniesContext';
 import { NotificationsContainer } from '../notificationsContainer/NotificationsContainer';
 import { Movies } from '../movies/Movies';
 

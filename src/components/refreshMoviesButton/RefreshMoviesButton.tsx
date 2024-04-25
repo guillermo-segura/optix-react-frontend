@@ -1,14 +1,13 @@
-import { useContext } from 'react';
 import { Button } from '@mui/material';
 import { Autorenew } from '@mui/icons-material';
 
 import { useScreenSize } from '../../hooks/useScreenSize/useScreenSize';
-import { Context as MoviesContext } from '../../context/MoviesContext';
-import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMoviesContext } from '../../context/MoviesContext';
+import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
 
 export const RefreshMoviesButton = () => {
-  const { fetchMovies, state: { loading } } = useContext(MoviesContext);
-  const { fetchMovieCompanies } = useContext(MovieCompaniesContext);
+  const { fetchMovies, state: { loading } } = useMoviesContext();
+  const { fetchMovieCompanies } = useMovieCompaniesContext();
   const screenSize = useScreenSize();
 
   const isSmallScreen = screenSize === 'sm';
