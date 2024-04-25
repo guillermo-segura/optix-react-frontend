@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Box } from '@mui/material';
 
-import { Notification } from '../generic/notification/Notification';
-import { Context as MoviesContext } from '../../context/MoviesContext';
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { Context as MoviesContext } from '../../context/MoviesContext';
+import { Notification } from '../generic/notification/Notification';
 
 export const NotificationsContainer = () =>  {
   const {
@@ -16,7 +16,12 @@ export const NotificationsContainer = () =>  {
   } = useContext(MovieCompaniesContext);
 
   return (
-    <Box sx={{ position: 'absolute', top: '0px', right: '16px' }} display="flex" flexDirection="column" alignItems="end">
+    <Box
+      sx={{ position: 'fixed', top: '16px', right: '16px', zIndex: '1' }}
+      display="flex"
+      flexDirection="column"
+      alignItems="end"
+    >
       {moviesNotification.visible && (
         <Notification
           severity={moviesNotification.type}

@@ -1,9 +1,9 @@
 import { Container, Typography } from '@mui/material';
 
-import { Movies } from '../movies/Movies';
 import { Provider as MoviesProvider } from '../../context/MoviesContext';
 import { Provider as MovieCompaniesProvider } from '../../context/MovieCompaniesContext';
 import { NotificationsContainer } from '../notificationsContainer/NotificationsContainer';
+import { Movies } from '../movies/Movies';
 
 export const App = () =>  {
   return (

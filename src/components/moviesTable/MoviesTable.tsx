@@ -1,12 +1,12 @@
 import { useContext, useMemo } from 'react';
 import { GridColDef, GridRowSelectionModel } from '@mui/x-data-grid';
 
-import { Review } from '../generic/review/Review';
+import { Movie } from '../../utils/types/models';
 import { round, avg } from '../../utils/helpers/math';
 import { Context as MoviesContext } from '../../context/MoviesContext';
 import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { Review } from '../generic/review/Review';
 import { Table } from '../generic/table/Table';
-import { Movie } from '../../utils/types/models';
 
 const columns: GridColDef<Movie[]>[] = [
   {
@@ -24,7 +24,7 @@ const columns: GridColDef<Movie[]>[] = [
   {
     field: 'reviews',
     headerName: 'Reviews',
-    width: 200,
+    width: 220,
     editable: false,
     valueGetter: (value) => round(avg(value), 1),
     renderCell: ({ value }) => <Review value={value} readOnly />,
@@ -54,9 +54,12 @@ export const MoviesTable = () =>  {
     selectMovie(movie);
   };
 
-  const selectedRow = selectedMovie ? [selectedMovie.id] : [];
-
   return (
-    <Table rows={rows} columns={columns} onClickRow={onClickRow} selectedRow={selectedRow}/>
+    <Table
+      rows={rows}
+      columns={columns}
+      onClickRow={onClickRow}
+      selectedRow={selectedMovie ? [selectedMovie.id] : []}
+    />
   );
 }

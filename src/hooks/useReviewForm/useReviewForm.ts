@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext } from 'react';
 
 import { Context as MovieContext } from '../../context/MoviesContext';
 
@@ -24,10 +24,13 @@ export const useReviewForm = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    submitReview({ message, review }).then(() => {
-      setIsSubmitting(false);
-      resetForm();
-    });
+    submitReview({ message, review })
+      .then(() => {
+        resetForm();
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return {

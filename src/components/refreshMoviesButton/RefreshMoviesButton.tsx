@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { Button } from "@mui/material";
-import { Autorenew } from "@mui/icons-material";
+import { useContext } from 'react';
+import { Button } from '@mui/material';
+import { Autorenew } from '@mui/icons-material';
 
-import { useScreenSize } from "../../hooks/useScreenSize/useScreenSize";
-import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useScreenSize } from '../../hooks/useScreenSize/useScreenSize';
 import { Context as MoviesContext } from '../../context/MoviesContext';
+import { Context as MovieCompaniesContext } from '../../context/MovieCompaniesContext';
 
 export const RefreshMoviesButton = () => {
   const { fetchMovies, state: { loading } } = useContext(MoviesContext);

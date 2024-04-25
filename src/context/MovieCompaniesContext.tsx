@@ -55,7 +55,7 @@ const fetchMovieCompanies = (
       payload: res.data,
     })
   }).
-  catch((err) => {
+  catch(() => {
     dispatch({
       type: ACTION_TYPES.setNotification,
       payload: { visible: true, type: 'error', content: 'There was a problem loading movie companies' },

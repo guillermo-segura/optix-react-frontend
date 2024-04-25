@@ -72,7 +72,7 @@ const fetchMovies = (
       payload: res.data,
     })
   })
-  .catch((err) => {
+  .catch(() => {
     dispatch({
       type: ACTION_TYPES.setNotification,
       payload: { visible: true, type: 'error', content: 'There was a problem fetching movies' },
@@ -90,18 +90,18 @@ const submitReview = (
   dispatch: React.Dispatch<MoviesContextAction>
 ) => async (payload: SubmitReviewPayload): Promise<void> => {
   await moviesApi.post('/submitReview', { payload })
-  .then((res) => {
-    dispatch({
-      type: ACTION_TYPES.setNotification,
-      payload: { visible: true, type: 'success', content: res.data.message },
-    })
-  }).
-  catch((err) => {
-    dispatch({
-      type: ACTION_TYPES.setNotification,
-      payload: { visible: true, type: 'error', content: err.message },
-    })
-  });
+    .then((res) => {
+      dispatch({
+        type: ACTION_TYPES.setNotification,
+        payload: { visible: true, type: 'success', content: res.data.message },
+      })
+    }).
+    catch((err) => {
+      dispatch({
+        type: ACTION_TYPES.setNotification,
+        payload: { visible: true, type: 'error', content: err.message },
+      })
+    });
 };
 
 const closeNotification = (
@@ -131,9 +131,8 @@ export const Provider = ({ children }: { children: JSX.Element }) => {
     closeNotification: closeNotification(dispatch),
   };
 
-  const value = { state, ...actions };
   return (
-    <Context.Provider value={value}>
+    <Context.Provider value={{ state, ...actions }}>
       {children}
     </Context.Provider>
   );
