@@ -1,6 +1,6 @@
 import { Container, Typography } from '@mui/material';
 
-import { MoviesProvider } from '../../context/MoviesContext';
+import { MoviesProvider } from '../../context/movies/MoviesContext';
 import { MovieCompaniesProvider } from '../../context/MovieCompaniesContext';
 import { NotificationsContainer } from '../notificationsContainer/NotificationsContainer';
 import { Movies } from '../movies/Movies';

@@ -11,7 +11,7 @@ jest.mock('../movies/Movies', () => ({
   Movies: jest.fn(() => <div data-testid="movies">Mocked Movies Component</div>)
 }));
 
-jest.mock('../../context/MoviesContext', () => ({
+jest.mock('../../context/movies/MoviesContext', () => ({
   MoviesProvider: ({ children }: { children: JSX.Element }) => children,
 }));
 

@@ -2,7 +2,7 @@ import { GridColDef, GridRowSelectionModel } from '@mui/x-data-grid';
 
 import { Movie } from '../../utils/types/models';
 import { round, avg } from '../../utils/helpers/math';
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { Review } from '../generic/review/Review';
 import { Table } from '../generic/table/Table';
 

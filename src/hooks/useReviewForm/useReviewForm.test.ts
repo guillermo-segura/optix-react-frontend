@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react';
 
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { useReviewForm } from './useReviewForm';
 
-jest.mock('../../context/MoviesContext', () => ({
+jest.mock('../../context/movies/MoviesContext', () => ({
   useMoviesContext: jest.fn(),
 }));
 

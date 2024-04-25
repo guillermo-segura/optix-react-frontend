@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react';
 
 import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { useMoviesData } from './useMoviesData';
 
-jest.mock('../../context/MoviesContext', () => ({
+jest.mock('../../context/movies/MoviesContext', () => ({
   useMoviesContext: jest.fn(),
 }));
 

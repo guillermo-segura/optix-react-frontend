@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 
 import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { Notification } from '../generic/notification/Notification';
 
 export const NotificationsContainer = () =>  {

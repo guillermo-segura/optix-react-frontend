@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
 import { Movie } from '../../utils/types/models';
 

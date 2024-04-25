@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 
 const DEFAULT_MESSAGE = '';
 const DEFAULT_REVIEW = 0;

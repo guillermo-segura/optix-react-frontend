@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { Autorenew } from '@mui/icons-material';
 
 import { useScreenSize } from '../../hooks/useScreenSize/useScreenSize';
-import { useMoviesContext } from '../../context/MoviesContext';
+import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
 
 export const RefreshMoviesButton = () => {
