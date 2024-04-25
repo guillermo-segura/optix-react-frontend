@@ -1,4 +1,3 @@
-
 import { MoviesContextAction, SubmitReviewPayload } from '../../utils/types/context';
 import { Movie } from '../../utils/types/models';
 import moviesApi from '../../api/moviesApi';
