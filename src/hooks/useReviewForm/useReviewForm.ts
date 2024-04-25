@@ -28,6 +28,9 @@ export const useReviewForm = () => {
       .then(() => {
         resetForm();
       })
+      .catch(() => {
+        // @TODO: SURFACE ERROR THROUGH NOTIFICATION
+      })
       .finally(() => {
         setIsSubmitting(false);
       });
