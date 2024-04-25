@@ -2,15 +2,15 @@
 
 ### Description
 
-Cool project about refactoring a codebase and turn it into a functional page that display a list of movies and allow the user to review them.
+Project about refactoring a codebase and turn it into a functional page that display a list of movies and allow the user to review them.
 
-This has been a cool project. It allowed me to explore [MUI-Core](https://mui.com/material-ui/all-components/) and [MUI-X](https://mui.com/x/introduction/), as well as as Docker; I've used Docker in the past, but it's the first time I do the images' setup.
+This has been a fun project. It allowed me to explore [MUI-Core](https://mui.com/material-ui/all-components/) and [MUI-X](https://mui.com/x/introduction/), as well as as Docker; I've used Docker in the past, but it's the first time I do the images' setup.
 
 ![homepage](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/homepage.png?raw=true)
 
 For the interactive table, I've used the `Data Grid` component; not only it is a scalable and customizable solution, but also fulfills all the user requirements right out of the box.
 
-I build a custom `Review` component using the MUI `Rating` component. I made it responsive and displayed extra information both in the editable and non-editable versions to improve the user experience.
+I also build a custom `Review` component using the MUI `Rating` component. I made it responsive and displayed extra information both in the editable and non-editable versions to improve the UI feedback to the user.
 
 ![review_card](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/review_card.png?raw=true)
 
@@ -22,9 +22,9 @@ In addition, I built closeable notifications and displayed them at the top-right
 
 On small screens, the `Refresh` button becomes an icon-only button, and the `Review` component displays a single star alongside the score - following IMDB's approach.
 
-The review form is displayed in a modal as requested.
-
 ![homepage_sm](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/homepage_sm.png?raw=true)
+
+The review form is displayed in a modal as requested, and the submit button is disabled in case of message error.
 
 ![review_modal](https://github.com/guillermo-segura/optix-react-frontend/blob/main/assets/review_modal.png?raw=true)
 
@@ -50,7 +50,8 @@ cp .env.example .env
 npm run dev
 ```
 
-==IMPORTANT ⚠️==  If you intend to run the project locally and not through the Docker image, make sure you run `npm run dev` at least once BEFORE `npm run install`. Running `npm run install` first leads to an error when running the Docker image afterwards.
+⚠️ IMPORTANT ⚠️
+If you intend to run the project locally and not through the Docker image, make sure you run `npm run dev` at least once ==BEFORE== `npm run install`. Running `npm run install` first leads to an error when running the Docker image afterwards.
 
 If you want to run this project directly in your local machine:
 
@@ -78,23 +79,23 @@ Please return as a link to a public GIT store of your choice. e.g. Github
 
 ***A/C***
 Must have(s)
-* Display total number of movies.
-* Table must show movie title, average review score to 1 decimal place and company that produces the film.
-    * Movie company data comes from movieCompanies GET request.
-    * Movies data comes from movies GET request.
-* User must be able to select table row to leave a review with form appearing when there is a selected movie.
-    * POST request to submitReview endpoint and display message returned on response.
-    * Form must restrict message to 100 characters and show an error message if over 100 and not allow for submission in this instance.
-* Highlight selected movie row when clicked.
-* Handle error and loading states.
+- [x] Display total number of movies.
+- [x] Table must show movie title, average review score to 1 decimal place and company that produces the film.
+    - [x] Movie company data comes from movieCompanies GET request.
+    - [x] Movies data comes from movies GET request.
+- [x] User must be able to select table row to leave a review with form appearing when there is a selected movie.
+    - [x] POST request to submitReview endpoint and display message returned on response.
+    - [x] Form must restrict message to 100 characters and show an error message if over 100 and not allow for submission in this instance.
+- [x] Highlight selected movie row when clicked.
+- [x] Handle error and loading states.
 
 Should have(s)
-* Review column should be sortable.
-* Submit review form should appear in a modal on mobile devices or small breakpoints.
+- [x] Review column should be sortable.
+- [x] Submit review form should appear in a modal on mobile devices or small breakpoints.
 
 Could have(s)
-* Add a button (or other mechanism) to refresh movies and movie companies.
-* Containerise application using docker.
+- [x] Add a button (or other mechanism) to refresh movies and movie companies.
+- [x] Containerise application using docker.
 
 
 The three endpoints to be used are:
