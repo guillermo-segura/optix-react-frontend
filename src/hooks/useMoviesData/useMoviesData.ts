@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 
 import { useMoviesContext } from '../../context/movies/MoviesContext';
-import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMovieCompaniesContext } from '../../context/movieCompanies/MovieCompaniesContext';
 import { Movie } from '../../utils/types/models';
 
 export interface UseMoviesData {

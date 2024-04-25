@@ -15,7 +15,7 @@ jest.mock('../../context/movies/MoviesContext', () => ({
   MoviesProvider: ({ children }: { children: JSX.Element }) => children,
 }));
 
-jest.mock('../../context/MovieCompaniesContext', () => ({
+jest.mock('../../context/movieCompanies/MovieCompaniesContext', () => ({
   MovieCompaniesProvider: ({ children }: { children: JSX.Element }) => children,
 }));
 

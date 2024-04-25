@@ -3,7 +3,7 @@ import { Autorenew } from '@mui/icons-material';
 
 import { useScreenSize } from '../../hooks/useScreenSize/useScreenSize';
 import { useMoviesContext } from '../../context/movies/MoviesContext';
-import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMovieCompaniesContext } from '../../context/movieCompanies/MovieCompaniesContext';
 
 export const RefreshMoviesButton = () => {
   const { fetchMovies, state: { loading } } = useMoviesContext();

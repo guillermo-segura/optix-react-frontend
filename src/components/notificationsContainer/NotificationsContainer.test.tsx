@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMovieCompaniesContext } from '../../context/movieCompanies/MovieCompaniesContext';
 import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { NotificationsContainer } from './NotificationsContainer';
 
@@ -17,7 +17,7 @@ jest.mock('../../context/movies/MoviesContext', () => ({
   }))
 }));
 
-jest.mock('../../context/MovieCompaniesContext', () => ({
+jest.mock('../../context/movieCompanies/MovieCompaniesContext', () => ({
   useMovieCompaniesContext: jest.fn(() => ({
     closeNotification: jest.fn(),
     state: {

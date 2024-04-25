@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 
-import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMovieCompaniesContext } from '../../context/movieCompanies/MovieCompaniesContext';
 import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { Notification } from '../generic/notification/Notification';
 

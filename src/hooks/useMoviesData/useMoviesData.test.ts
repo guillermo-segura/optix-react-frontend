@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { useMovieCompaniesContext } from '../../context/MovieCompaniesContext';
+import { useMovieCompaniesContext } from '../../context/movieCompanies/MovieCompaniesContext';
 import { useMoviesContext } from '../../context/movies/MoviesContext';
 import { useMoviesData } from './useMoviesData';
 
@@ -8,7 +8,7 @@ jest.mock('../../context/movies/MoviesContext', () => ({
   useMoviesContext: jest.fn(),
 }));
 
-jest.mock('../../context/MovieCompaniesContext', () => ({
+jest.mock('../../context/movieCompanies/MovieCompaniesContext', () => ({
   useMovieCompaniesContext: jest.fn(),
 }));
 
