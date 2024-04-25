@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import { useContext, useReducer, createContext } from 'react';
 
 import { Movie } from '../utils/types/models';
 import {
@@ -41,6 +41,8 @@ const moviesReducer = (
   state: MoviesContextState,
   action: MoviesContextAction,
 ): MoviesContextState => {
+  console.log('Previous State:', state);
+  console.log('Action:', action);
   switch (action.type) {
     case ACTION_TYPES.setMovies:
       return { ...state, movies: action.payload };
@@ -60,13 +62,17 @@ const moviesReducer = (
 const fetchMovies = (
   dispatch: React.Dispatch<MoviesContextAction>
 ) => async (): Promise<void> => {
+  console.log('1');
+
   dispatch({
     type: ACTION_TYPES.setLoading,
     payload: true,
   });
+  console.log('2');
 
   await moviesApi.get<Movie[]>('/movies')
   .then((res) => {
+    console.log('3');
     dispatch({
       type: ACTION_TYPES.setMovies,
       payload: res.data,
@@ -119,7 +125,7 @@ const selectMovie = (
   })
 };
 
-export const Context = React.createContext<MoviesContext>(INITIAL_CONTEXT);
+export const Context = createContext<MoviesContext>(INITIAL_CONTEXT);
 
 export const useMoviesContext = () => useContext(Context);
 

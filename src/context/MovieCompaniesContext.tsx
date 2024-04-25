@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import { useContext, useReducer, createContext } from 'react';
 
 import { MovieCompany } from '../utils/types/models';
 import {
@@ -69,7 +69,7 @@ const closeNotification = (
   dispatch({ type: ACTION_TYPES.closeNotification });
 };
 
-export const Context = React.createContext<MovieCompaniesContext>(INITIAL_CONTEXT);
+export const Context = createContext<MovieCompaniesContext>(INITIAL_CONTEXT);
 
 export const useMovieCompaniesContext = () => useContext(Context);
 
