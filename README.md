@@ -51,7 +51,8 @@ npm run dev
 ```
 
 ⚠️ IMPORTANT ⚠️
-: If you intend to run the project locally and not through the Docker image, make sure you run `npm run dev` at least once BEFORE `npm run install`. Running `npm run install` first leads to an error when running the Docker image afterwards.
+
+If you intend to run the project locally and not through the Docker image, make sure you run `npm run dev` at least once BEFORE `npm run install`. Running `npm run install` first leads to an error when running the Docker image afterwards.
 
 If you want to run this project directly in your local machine:
 
