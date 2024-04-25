@@ -12,7 +12,11 @@ export const Notification = ({
   onClose,
 }: NotificationProps): JSX.Element => {
   return (
-    <Alert sx={{ width: 'max-content', marginBottom: '6px', zIndex: 100 }}severity={severity} onClose={onClose}>
+    <Alert
+      sx={{ width: 'max-content', marginBottom: '6px', zIndex: 100 }}
+      severity={severity}
+      onClose={onClose}
+    >
       {content}
     </Alert>
   );

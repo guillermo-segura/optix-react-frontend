@@ -1,6 +1,12 @@
 import { memo } from 'react';
 import { Box } from '@mui/material';
-import { DataGrid, GridColDef, GridRowSelectionModel, GridCallbackDetails, GridInputRowSelectionModel } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridColDef,
+  GridRowSelectionModel,
+  GridCallbackDetails,
+  GridInputRowSelectionModel,
+} from '@mui/x-data-grid';
 
 const PAGE_SIZE = 10;
 
@@ -23,6 +29,13 @@ export const Table = memo(({
         rows={rows}
         columns={columns}
         pageSizeOptions={[PAGE_SIZE]}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: PAGE_SIZE,
+            },
+          },
+        }}
         onRowSelectionModelChange={onClickRow}
         rowSelectionModel={selectedRow}
         checkboxSelection

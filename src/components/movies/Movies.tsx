@@ -34,7 +34,7 @@ export const Movies = () =>  {
         </Typography>
         <RefreshMoviesButton />
       </Box>
-      <MoviesTable />
+      <MoviesTable movies={movies} />
       {selectedMovie && <ReviewForm movie={selectedMovie} />}
     </>
   );

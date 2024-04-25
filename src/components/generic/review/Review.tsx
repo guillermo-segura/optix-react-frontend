@@ -1,31 +1,13 @@
 import { Box, Chip, Rating, Typography } from '@mui/material';
 
-import { round, avg } from '../../../utils/helpers/math';
 import { useScreenSize } from '../../../hooks/useScreenSize/useScreenSize';
-
-interface Labels {
-  [index: string]: string;
-}
-
+import { labels } from './labels';
 export interface ReviewProps {
   value: number;
   readOnly?: boolean;
   onChange?: (event: React.SyntheticEvent<Element, Event>, value: number | null) => void;
   label?: string;
 }
-
-const labels: Labels = {
-  0.5: 'Disastrous',
-  1: 'Awful',
-  1.5: 'Terrible',
-  2: 'Bad',
-  2.5: 'Mediocre',
-  3: 'Decent',
-  3.5: 'Good',
-  4: 'Great',
-  4.5: 'Fantastic',
-  5: 'Masterpiece',
-};
 
 export const Review = ({
   value,
@@ -34,7 +16,6 @@ export const Review = ({
   onChange = undefined,
 }: ReviewProps): JSX.Element => {
   const screenSize = useScreenSize();
-  
   return (
     <Box
       sx={{
